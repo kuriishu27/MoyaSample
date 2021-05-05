@@ -10,70 +10,71 @@ import Moya
 
 // Endpoints
 enum UserService {
-	case createUser(firstName: String, lastName: String)
-	case updateUser(id: Int, firstName: String, lastName: String)
-	case showAccounts
+    case createUser(firstName: String, lastName: String)
+    case updateUser(id: Int, firstName: String, lastName: String)
+    case showAccounts
 }
 
 // MARK: - TargetType Protocol Implementation
+
 extension UserService: TargetType {
-	var baseURL: URL { URL(string: "https://api.myservice.com")! }
-	var path: String {
-		switch self {
-		case .createUser:
-			return "/users"
-		case let .updateUser(id, _, _):
-			return "/users/\(id)"
-		case .showAccounts:
-			return "/accounts"
-		}
-	}
+    var baseURL: URL { URL(string: "https://api.myservice.com")! }
+    var path: String {
+        switch self {
+        case .createUser:
+            return "/users"
+        case let .updateUser(id, _, _):
+            return "/users/\(id)"
+        case .showAccounts:
+            return "/accounts"
+        }
+    }
 
-	var method: Moya.Method {
-		switch self {
-		case .showAccounts:
-			return .get
-		case .createUser, .updateUser:
-			return .post
-		}
-	}
+    var method: Moya.Method {
+        switch self {
+        case .showAccounts:
+            return .get
+        case .createUser, .updateUser:
+            return .post
+        }
+    }
 
-	var task: Task {
-		switch self {
-		case .showAccounts:
-			return .requestPlain
-		case let .updateUser(_, firstName, lastName):
-			return .requestParameters(parameters: ["firstName": firstName, "lastName": lastName], encoding: URLEncoding.queryString) /// Make sure that you are using the correct `encoding`; URLEncoding is the one used in Params in Postman
-		case let .createUser(firstName, lastName):
-			return .requestParameters(parameters: ["firstName": firstName, "lastName": lastName], encoding: JSONEncoding.default) // this JSONEncoding is used for the body in Postman
-		}
-	}
+    var task: Task {
+        switch self {
+        case .showAccounts:
+            return .requestPlain
+        case let .updateUser(_, firstName, lastName):
+            return .requestParameters(parameters: ["firstName": firstName, "lastName": lastName], encoding: URLEncoding.queryString) /// Make sure that you are using the correct `encoding`; URLEncoding is the one used in Params in Postman
+        case let .createUser(firstName, lastName):
+            return .requestParameters(parameters: ["firstName": firstName, "lastName": lastName], encoding: JSONEncoding.default) // this JSONEncoding is used for the body in Postman
+        }
+    }
 
-	var sampleData: Data {
-		switch self {
-		case let .createUser(firstName, lastName):
-			return "{\"id\": \(Int.random(in: 1 ... 1000)), \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\"}".utf8Encoded
-		case let .updateUser(id, firstName, lastName):
-			return "{\"id\": \(id), \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\"}".utf8Encoded
-		case .showAccounts:
-			guard let url = Bundle.main.url(forResource: "accounts", withExtension: "json"),
-				  let data = try? Data(contentsOf: url)
-			else {
-				return Data()
-			}
-			return data
-		}
-	}
+    var sampleData: Data {
+        switch self {
+        case let .createUser(firstName, lastName):
+            return "{\"id\": \(Int.random(in: 1 ... 1000)), \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\"}".utf8Encoded
+        case let .updateUser(id, firstName, lastName):
+            return "{\"id\": \(id), \"firstName\": \"\(firstName)\", \"lastName\": \"\(lastName)\"}".utf8Encoded
+        case .showAccounts:
+            guard let url = Bundle.main.url(forResource: "accounts", withExtension: "json"),
+                  let data = try? Data(contentsOf: url)
+            else {
+                return Data()
+            }
+            return data
+        }
+    }
 
-	var headers: [String: String]? {
-		return ["Content-type": "application/json"]
-	}
+    var headers: [String: String]? {
+        return ["Content-type": "application/json"]
+    }
 }
 
 // MARK: - Helpers
 
 private extension String {
-	var utf8Encoded: Data {
-		return data(using: .utf8)!
-	}
+    var utf8Encoded: Data {
+        return data(using: .utf8)!
+    }
 }
