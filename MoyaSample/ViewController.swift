@@ -6,14 +6,27 @@
 //
 
 import UIKit
+import Moya
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
+
+	let viewModel: ViewModel = ViewModel()
+	var accounts: [Account]!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+
 	}
 
-
+	override func viewDidAppear(_ animated: Bool) {
+		viewModel.showAccounts { result in
+			switch result {
+			case .failure(let error):
+				// handle error via a logger, alert, etc.
+				print(error.errorDescription!)
+			case .success(let account):
+				self.accounts = account
+			}
+		}
+	}
 }
-

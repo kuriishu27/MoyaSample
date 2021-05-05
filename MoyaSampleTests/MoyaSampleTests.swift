@@ -6,28 +6,65 @@
 //
 
 import XCTest
+import Moya
 @testable import MoyaSample
 
 class MoyaSampleTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+	var viewModel: ViewModel!
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+		viewModel = nil
+	}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testCreateUser() throws {
+		let exp = expectation(description: "creates a new user")
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+		viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
 
+		viewModel.createUser(firstName: "Fancy", lastName: "Name") { result in
+			switch result {
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			case .success(let user):
+				XCTAssertEqual(user.firstName, "Fancy")
+				exp.fulfill()
+			}
+		}
+		wait(for: [exp], timeout: 1)
+	}
+
+	func testUpdateUser() throws {
+		let exp = expectation(description: "updates a new user")
+
+		viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
+
+		viewModel.updateUser(id: 123, firstName: "Updated", lastName: "Last Name") { result in
+			switch result {
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			case .success(let user):
+				XCTAssertEqual(user.firstName, "Updated")
+				exp.fulfill()
+			}
+		}
+		wait(for: [exp], timeout: 1)
+	}
+
+	func testShowAccounts() throws {
+		let exp = expectation(description: "updates a new user")
+
+		viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
+
+		viewModel.showAccounts { result in
+			switch result {
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			case .success(let accounts):
+				XCTAssertEqual(accounts.first!.userId, 123)
+				exp.fulfill()
+			}
+		}
+		wait(for: [exp], timeout: 1)
+	}
 }
