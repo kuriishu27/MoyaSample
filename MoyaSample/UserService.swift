@@ -19,7 +19,7 @@ extension UserService: TargetType {
 	var baseURL: URL { URL(string: "https://api.myservice.com")! }
 	var path: String {
 		switch self {
-		case .createUser(_, _):
+		case .createUser:
 			return "/users"
 		case .updateUser(let id, _, _):
 			return "/users/\(id)"
