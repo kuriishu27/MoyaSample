@@ -9,7 +9,7 @@ import Moya
 import UIKit
 
 final class ViewController: UIViewController {
-    let viewModel = ViewModel()
+    let viewModel = UserViewModel()
     var accounts: [Account]!
 
     override func viewDidLoad() {

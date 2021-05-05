@@ -10,7 +10,7 @@ import Moya
 import XCTest
 
 class MoyaSampleTests: XCTestCase {
-    var viewModel: ViewModel!
+    var viewModel: UserViewModel!
 
     override func tearDownWithError() throws {
         viewModel = nil
@@ -19,7 +19,7 @@ class MoyaSampleTests: XCTestCase {
     func testCreateUser() throws {
         let exp = expectation(description: "creates a new user")
 
-        viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
+        viewModel = UserViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
 
         viewModel.createUser(firstName: "Fancy", lastName: "Name") { result in
             switch result {
@@ -36,7 +36,7 @@ class MoyaSampleTests: XCTestCase {
     func testUpdateUser() throws {
         let exp = expectation(description: "updates a new user")
 
-        viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
+        viewModel = UserViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
 
         viewModel.updateUser(id: 123, firstName: "Updated", lastName: "Last Name") { result in
             switch result {
@@ -53,7 +53,7 @@ class MoyaSampleTests: XCTestCase {
     func testShowAccounts() throws {
         let exp = expectation(description: "updates a new user")
 
-        viewModel = ViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
+        viewModel = UserViewModel(provider: MoyaProvider<UserService>(stubClosure: MoyaProvider.immediatelyStub))
 
         viewModel.showAccounts { result in
             switch result {

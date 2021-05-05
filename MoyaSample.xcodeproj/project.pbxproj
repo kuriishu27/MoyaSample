@@ -17,7 +17,7 @@
 		2D9536F62642CFD900C29F7B /* MoyaSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9536F52642CFD900C29F7B /* MoyaSampleUITests.swift */; };
 		2D9537082642D07D00C29F7B /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 2D9537072642D07D00C29F7B /* Moya */; };
 		2D95370D2642D4DD00C29F7B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D95370C2642D4DD00C29F7B /* UserService.swift */; };
-		2D9537122642D50300C29F7B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9537112642D50300C29F7B /* ViewModel.swift */; };
+		2D9537122642D50300C29F7B /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9537112642D50300C29F7B /* UserViewModel.swift */; };
 		2D9537182642D51E00C29F7B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9537172642D51E00C29F7B /* User.swift */; };
 		2D9537202642D52900C29F7B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D95371F2642D52900C29F7B /* Account.swift */; };
 		2D9537262642D8FD00C29F7B /* accounts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D9537252642D8FD00C29F7B /* accounts.json */; };
@@ -56,7 +56,7 @@
 		2D9536F52642CFD900C29F7B /* MoyaSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaSampleUITests.swift; sourceTree = "<group>"; };
 		2D9536F72642CFD900C29F7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D95370C2642D4DD00C29F7B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		2D9537112642D50300C29F7B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2D9537112642D50300C29F7B /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		2D9537172642D51E00C29F7B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2D95371F2642D52900C29F7B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		2D9537252642D8FD00C29F7B /* accounts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = accounts.json; sourceTree = "<group>"; };
@@ -114,10 +114,10 @@
 				2D9536D32642CFD600C29F7B /* AppDelegate.swift */,
 				2D9536D52642CFD600C29F7B /* SceneDelegate.swift */,
 				2D9537162642D51700C29F7B /* Models */,
-				2D9536D72642CFD600C29F7B /* ViewController.swift */,
+				2D9537332642E43D00C29F7B /* ViewModel */,
+				2D9537352642E44C00C29F7B /* Controllers */,
+				2D9537342642E44500C29F7B /* Services */,
 				2D9537242642D8EF00C29F7B /* Resources */,
-				2D95370C2642D4DD00C29F7B /* UserService.swift */,
-				2D9537112642D50300C29F7B /* ViewModel.swift */,
 				2D9536D92642CFD600C29F7B /* Main.storyboard */,
 				2D9536DC2642CFD900C29F7B /* Assets.xcassets */,
 				2D9536DE2642CFD900C29F7B /* LaunchScreen.storyboard */,
@@ -159,6 +159,30 @@
 				2D9537252642D8FD00C29F7B /* accounts.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2D9537332642E43D00C29F7B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2D9537112642D50300C29F7B /* UserViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2D9537342642E44500C29F7B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2D95370C2642D4DD00C29F7B /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2D9537352642E44C00C29F7B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2D9536D72642CFD600C29F7B /* ViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9537122642D50300C29F7B /* ViewModel.swift in Sources */,
+				2D9537122642D50300C29F7B /* UserViewModel.swift in Sources */,
 				2D95370D2642D4DD00C29F7B /* UserService.swift in Sources */,
 				2D9537182642D51E00C29F7B /* User.swift in Sources */,
 				2D9536D82642CFD600C29F7B /* ViewController.swift in Sources */,

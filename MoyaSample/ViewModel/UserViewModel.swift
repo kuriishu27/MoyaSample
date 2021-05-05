@@ -8,7 +8,7 @@
 import Foundation
 import Moya
 
-final class ViewModel {
+final class UserViewModel {
     let provider: MoyaProvider<UserService>
 
     init(provider: MoyaProvider<UserService> = MoyaProvider<UserService>()) {
