@@ -8,6 +8,6 @@
 import Foundation
 
 struct Account: Decodable {
-	let id: Int
-	let userId: Int
+    let id: Int
+    let userId: Int
 }
